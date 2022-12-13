@@ -67,6 +67,8 @@ pipeline{
                 script{ //configure nexus upload plugin and then generate the syntax after configuring necessary things for synatx generator
                    
                     def readPomVersion = readMavenPom file: 'pom.xml'
+
+                    def nexusrepo = readPomVersion.version.endsWith("SNAPSHOT") "demojavaapp-snapshot" : "demojavaapp-release"
                     nexusArtifactUploader artifacts: 
                     [
                         [
