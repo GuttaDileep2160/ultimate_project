@@ -102,5 +102,20 @@ pipeline{
                 }
             }
         }
+
+        stage('Push the image to dockerHub'){
+
+            steps{
+
+                script{
+
+                    withCredentials([string(credentialsId: 'docker_hub_creds', variable: 'docker_hub_cred')]) {
+                        sh 'docker login -u gdileep -p ${docker_hub_cred}'
+                        sh 'docker push gdileep/$JOB_NAME:v1.$BUILD_ID'
+                        sh 'docker push gdileep/$JOB_NAME:latest'
+                    }                    
+                }
+            }
+        }
     }
 }
