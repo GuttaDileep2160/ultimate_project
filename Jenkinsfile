@@ -37,13 +37,18 @@ pipeline{
         }
 
         stage('Static code analysis'){
-
-            steps{//sonar api is used by jenkisn to authenticatet to sonar server using credentialsid 
-
+            
+            steps{
+                
+                script{
+                    //sonar api is used by jenkisn to authenticatet to sonar server using credentialsid
                     withSonarQubeEnv(credentialsId: 'sonar-api') {
-                    sh 'mvn clean package sonar:sonar'
+                        
+                        sh 'mvn clean package sonar:sonar'
+                    }
+                   }
+                    
                 }
             }
-        }
     }
 }
