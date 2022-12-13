@@ -35,5 +35,15 @@ pipeline{
                 sh 'mvn clean install'                //Maven build test command 
             }
         }
+
+        stage('Static code analysis'){
+
+            steps{//sonar api is used by jenkisn to authenticatet to sonar server using credentialsid 
+
+                    withSonarQubeEnv(credentialsId: 'sonar-api') {
+                    sh 'mvn clean package sonar:sonar'
+                }
+            }
+        }
     }
 }
