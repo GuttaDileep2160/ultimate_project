@@ -60,5 +60,30 @@ pipeline{
                 }
             }
         }
+
+        stage('Upload jar file to nexus'){
+            steps{
+
+                script{ //configure nexus upload plugin and then generate the syntax after configuring necessary things for synatx generator
+                    nexusArtifactUploader artifacts: 
+                    [
+                        [
+                            artifactId: 'springboot', 
+                            classifier: '', 
+                            file: 'target/Uber.jar', type: 'jar'
+                            ]
+                            ],
+                             credentialsId: 'nexus-auth', 
+                             groupId: 'com.example', 
+                             nexusUrl: '44.211.238.49:8081', 
+                             nexusVersion: 'nexus3', 
+                             protocol: 'http', 
+                             repository: 'demojavaapp-release', 
+                             version: '1.0.0'
+
+                    
+                }
+            }
+        }
     }
 }
