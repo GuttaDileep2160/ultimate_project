@@ -50,5 +50,15 @@ pipeline{
                     
                 }
             }
+
+        stage('Quality Gate Status'){
+            steps{
+
+                script{//quality gate analysis script developed by help of syntax generator
+
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api'
+                }
+            }
+        }
     }
 }
