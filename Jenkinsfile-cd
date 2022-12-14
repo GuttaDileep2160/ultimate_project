@@ -8,8 +8,8 @@ pipeline{
          string(name: 'region', defaultValue: 'us-east-1', description: 'EKS Cluster region')
     }
     environment{
-        ACCESS_KEY = withCredentials('aws_access_key_id')
-        SECRET_KEY = withCredentials('aws_secret_access_key')
+        ACCESS_KEY = credentials('aws_access_key_id')
+        SECRET_KEY = credentials('aws_secret_access_key')
     }
 
     stages{
