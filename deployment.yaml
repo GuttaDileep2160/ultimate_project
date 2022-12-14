@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydeployment
+  labels:
+    app: myjavaapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myjavaapp
+  template:
+    metadata:
+      labels:
+        app: myjavaapp
+    spec:
+      containers:
+      - name: myjavaapp
+        image: gdileep/demojavaproject:latest
+        ports:
+        - containerPort: 9090
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: myjavaapp
+  name: myjavaapp
+spec:
+  ports:
+  - port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app: myjavaapp
+  type: nodePort
