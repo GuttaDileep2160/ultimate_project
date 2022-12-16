@@ -80,7 +80,7 @@ pipeline{
                             ],
                              credentialsId: 'nexus-auth', 
                              groupId: 'com.example', 
-                             nexusUrl: '44.200.202.150:8081', 
+                             nexusUrl: '44.204.205.143:8081', 
                              nexusVersion: 'nexus3', 
                              protocol: 'http', 
                              repository: nexusRepo, 
@@ -120,7 +120,7 @@ pipeline{
     }
     post {
 		always {
-			mail bcc: '', body: "<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "${currentBuild.result} CI: Project name -> ${env.JOB_NAME}", to: "vikash.mrdevops@gmail.com";  
+			mail bcc: '', body: "<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "${currentBuild.result} CI: Project name -> ${env.JOB_NAME}", to: "guttadileep1997@gmail.com";  
 		}
 	}
 }
