@@ -63,7 +63,7 @@ pipeline{
             }
         }
 
-        stage('eks deployment'){
+        stage('eks deployment Destroy'){
             when { expression { params.action == 'destroy' } }
             steps{
                  
